@@ -1,4 +1,4 @@
-# spambot
+# Spam Bot
 
 This Project Is Made Using Python,
 There's A Empty file named "texts" the you can paste whatever you want to spam
