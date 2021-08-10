@@ -20,4 +20,17 @@ where there is SpamBot.py file.
 
 **Date Published- 28-05-2021**
 
+### UPDATE - 10/08/2021 - 
+
+Three folders added 
+1. Badwords
+2. BCS (This folders contain lyrics of his songs)
+3. TonyKakkar (This folders contain lyrics of his songs)
+
+Also to stop this Spambot from running quickly open cmd (or wherever you have run this file) and press
+
+### CTRL + BREAK
+
+buttons together 🙂.
+
 ## Happy Spamming.
