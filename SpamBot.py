@@ -1,10 +1,67 @@
-import pyautogui, time  # Importing pyautogui and time modules
+import pyautogui, time
+import os
 
-time.sleep(3)           # Delaying the program for 5s, this is the time when you have to click on the textbox of whatsapp/ anyother messaging app
+banner = r'''
+ _________                             __________             __   
+ /   _____/ ______   _____      _____   \______   \   ____   _/  |_ 
+ \_____  \  \____ \  \__  \    /     \   |    |  _/  /  _ \  \   __\
+ /        \ |  |_> >  / __ \_ |  Y Y  \  |    |   \ (  <_> )  |  |  
+/_______  / |   __/  (____  / |__|_|  /  |______  /  \____/   |__|  
+        \/  |__|          \/        \/          \/                  
+__________         ________                                  __     
+\______   \___.__. \______ \   _______  ______________      |__|    
+ |    |  _<   |  |  |    |  \_/ __ \  \/ /\_  __ \__  \     |  |    
+ |    |   \\___  |  |    `   \  ___/\   /  |  | \// __ \_   |  |    
+ |______  // ____| /_______  /\___  >\_/   |__|  (____  /\__|  |    
+        \/ \/              \/     \/                  \/\______|    
+'''
 
-f=open("./texts" , 'r',encoding="utf8")   # Here the path and name of the file (example "texts" or "./TonyKakkar/AnySongName") is given and 'r' means read
+def intro():
+    print(banner)
+    print("SpamBot is running...")
+    print("Press Ctrl-C to quit.\n\n")
+    print("Select option ...\n")
 
-for x in f:                     # A for loop to print all the words
-    pyautogui.typewrite(x)
-    # time.sleep(0.2)             # Time delay given between sending of two consecutive messages if this time is very small your system may hang
-    pyautogui.press("enter")    
+def inputOpt(x):
+    try:
+        return int(input(x))
+    except:
+        print('\nINVALID INPUT GIVEN\nExiting the program....')
+        exit()
+
+def selectFileFromRoot():
+    try:
+        os.path.exists('./payload')
+    except:
+        print("Payload folder not found\nCreating payload folder...\n\n")
+        os.mkdir('./payload')
+        selectFileFromRoot()
+
+def spamTextsFromFile():
+    print('''This option will print every line as a message that is in a file under payload folder of the project\nYou need to select the payload file first''')
+    selectFileFromRoot()
+    f=open("./payload/texts" , 'r',encoding="utf8")
+    for x in f:
+        pyautogui.typewrite(x)
+        time.sleep(0.2)
+        pyautogui.press("enter")
+
+
+def spamTextsFromInput():
+    f=open("./payload/texts" , 'r',encoding="utf8")
+    for x in f:
+        pyautogui.typewrite(x)
+        time.sleep(0.2)
+        pyautogui.press("enter")
+
+def main():
+    intro()
+    opt = inputOpt('''[0] Spam texts from text file\n[1] Spam texts from input\n\n''')
+    if opt == 0:
+        spamTextsFromFile()
+    elif opt == 1:
+        spamTextsFromInput()
+
+
+if __name__ == "__main__":
+    main()
