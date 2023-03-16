@@ -29,34 +29,37 @@ def inputOpt(x):
         print('\nINVALID INPUT GIVEN\nExiting the program....')
         exit()
 
-def selectFileFromRoot():
-    try:
-        os.path.exists('./payload')
-    except:
-        print("Payload folder not found\nCreating payload folder...\n\n")
-        os.mkdir('./payload')
-        selectFileFromRoot()
+import time
+
+def countdown(seconds):
+    for i in range(seconds, 0, -1):
+        print(i)
+        time.sleep(1)
+    print("Spamming Started...")
 
 def spamTextsFromFile():
-    print('''This option will print every line as a message that is in a file under payload folder of the project\nYou need to select the payload file first''')
-    selectFileFromRoot()
-    f=open("./payload/texts" , 'r',encoding="utf8")
+    print('''This option will print every line as a message that is in a file "payload" file at project root\nyou will have 10s to put your cursor onto the text field.''')
+    f=open("./payload" , 'r',encoding="utf8")
+    countdown(10)
     for x in f:
         pyautogui.typewrite(x)
-        time.sleep(0.2)
         pyautogui.press("enter")
+    print("Spamming Completed...")
 
 
 def spamTextsFromInput():
-    f=open("./payload/texts" , 'r',encoding="utf8")
-    for x in f:
-        pyautogui.typewrite(x)
-        time.sleep(0.2)
+    text = input("Write the text which you want to repeatedly spam and press enter. You will have 10s to put your cursor onto the text field.\n")
+    times = inputOpt("How many times you want to spam the text?\n")
+    countdown(10)
+    for x in range(times):
+        pyautogui.typewrite(text)
         pyautogui.press("enter")
+    print("Spamming Completed...")
 
 def main():
     intro()
     opt = inputOpt('''[0] Spam texts from text file\n[1] Spam texts from input\n\n''')
+    print('TO STOP THE PROGRAM, MOVE THE CURSOR OF YOUR MOUSE TO THE TOP LEFT CORNER OF THE SCREEN\n')
     if opt == 0:
         spamTextsFromFile()
     elif opt == 1:
